@@ -29,13 +29,16 @@ class ReportState extends State<Report> {
     if (mounted) setState(() {});
   }
 
-  void initState(){
+  void initState() {
     super.initState();
     getReports();
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> emptyCase = [Center(child: Text("No Reports In Database"))];
+    List<Widget> listCase = reportList;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: TopBar(),
@@ -46,9 +49,12 @@ class ReportState extends State<Report> {
             Container(
               padding: EdgeInsets.only(left: 25, top: 15, bottom: 10),
               child: Text("Your Reports",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  )),
             ),
-            ...reportList,
+            ...reportList.isEmpty ? emptyCase : listCase,
           ],
         ),
       ),
