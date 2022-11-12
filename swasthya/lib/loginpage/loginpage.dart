@@ -96,7 +96,7 @@ class Loginpage extends StatelessWidget {
             child: const Divider(
               height: 50,
               thickness: 1,
-              color: Color.fromARGB(255, 17, 98, 255),
+              color: Colors.black,
             ),
           ),
           Container(

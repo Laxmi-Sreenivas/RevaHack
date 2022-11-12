@@ -85,6 +85,12 @@ flutter:
     - family:  NavFont
       fonts:
         - asset: lib/assets/NavFont.ttf
+    - family:  Avenir
+      fonts:
+        - asset:  lib/assets/avenir_lt_std_65_medium.ttf
+          weight: 400
+        - asset:  lib/assets/avenir_lt_std_95_black.ttf
+          weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

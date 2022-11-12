@@ -16,7 +16,7 @@ class AppointmentsCard extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: Column(
         children: const <Widget>[
-          AppointPageCardData(AppointpagecardDetails : <String>["Kaveri","Murali","27/03/2002","B+ve","Male","*******"]),
+          AppointPageCardData(AppointpagecardDetails : <String>["Kaveri","Dr Praveen Kumar","027","06:30PM","Murali","03/10/2022"]),
         ],
       ),
     );
