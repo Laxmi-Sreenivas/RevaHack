@@ -79,6 +79,47 @@ class AuthService {
     return lst;
   }
 
+  Future<Set<List<String>>> get_doctors() async {
+    firebaseuser = FirebaseAuth.instance.currentUser;
+    final uref = FirebaseFirestore.instance.collection('healthrec');
+    Set<List<String>> res = new Set<List<String>>();
+    final temp = FirebaseFirestore.instance.collection('map');
+    DocumentSnapshot<Map<String, dynamic>> t =
+        await temp.doc(firebaseuser.uid).get();
+
+    DocumentSnapshot<Map<String, dynamic>> d =
+        await uref.doc(firebaseuser.uid).get();
+
+    final doc = FirebaseFirestore.instance.collection('healthrec');
+
+    int presentNo = await t['presentno'];
+    if (presentNo == 0)
+      return res;
+    else {
+      for (int i = presentNo; i > 0; i--) {
+        List<String> lst = [];
+        DocumentSnapshot<Map<String, dynamic>> k = await FirebaseFirestore
+            .instance
+            .collection('healthrec')
+            .doc(firebaseuser.uid)
+            .collection(i.toString())
+            .doc('ABCD')
+            .get();
+        String s = k["Docid"];
+
+        DocumentSnapshot<Map<String, dynamic>> l =
+            await FirebaseFirestore.instance.collection('doctors').doc(s).get();
+        lst.add(l['Name']);
+        lst.add(l['Hospital']);
+        lst.add(l['email']);
+        lst.add(k['date']);
+        res.add(lst);
+      }
+      print(res);
+      return res;
+    }
+  }
+
   Future<List<List<String>>> getHealthrec() async {
     firebaseuser = FirebaseAuth.instance.currentUser;
     final uref = FirebaseFirestore.instance.collection('healthrec');
@@ -109,7 +150,6 @@ class AuthService {
         lst.add(k['date']);
         res.add(lst);
       }
-
     }
     return res;
     //}
