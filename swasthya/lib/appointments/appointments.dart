@@ -43,21 +43,33 @@ class appointmentsState extends State<appointments> {
             ),
             padding: EdgeInsets.fromLTRB(60, 30, 60, 30),
             child: Container(
-              padding: EdgeInsets.all(20),
-              child: Column(children: <Widget>[
-                Icon(Icons.plus_one_outlined,size: 40,),
-                SizedBox(
-                  width: 100,
-                  child: Center( child: Column(
-                    children: <Widget>[
-                      Text("Book an"),
-                      Text("Appointment")
-                    ],
-                  )),
-                ),
-                
-              ],)
-            ),
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.add,
+                      size: 50,
+                    ),
+                    SizedBox(
+                      width: 100,
+                      child: Center(
+                          child: Column(
+                        children: <Widget>[
+                          Text(
+                            "Book an",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                          Text(
+                            "Appointment",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          )
+                        ],
+                      )),
+                    ),
+                  ],
+                )),
           ),
           Container(
             padding: EdgeInsets.fromLTRB(0, 40, 0, 10),

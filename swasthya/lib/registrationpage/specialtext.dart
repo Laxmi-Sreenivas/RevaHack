@@ -8,6 +8,7 @@ class SpecialText extends StatelessWidget {
   final double leftPadding;
   final double topPadding;
   final double rightPadding;
+  final double boldIncrease;
 
   const SpecialText(
       {Key? key,
@@ -17,7 +18,8 @@ class SpecialText extends StatelessWidget {
       this.bottomPadding = 0,
       this.leftPadding = 0,
       this.topPadding = 0,
-      this.rightPadding = 0})
+      this.rightPadding = 0,
+      this.boldIncrease = 0})
       : super(key: key);
 
   @override
@@ -32,7 +34,7 @@ class SpecialText extends StatelessWidget {
             TextSpan(
                 text: boldText,
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, fontSize: fontsize)),
+                    TextStyle(fontWeight: FontWeight.bold, fontSize: fontsize+boldIncrease)),
           ],
         ),
       ),
