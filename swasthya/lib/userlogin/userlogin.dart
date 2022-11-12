@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:swasthya/registrationpage/registrationpage.dart';
 import 'package:swasthya/userregistration/userregistration.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swasthya/services/services.dart';
 
 class userlogin extends StatelessWidget {
   const userlogin({Key? key}) : super(key: key);
@@ -30,7 +32,10 @@ class MyStatefulWidget extends StatefulWidget {
 class MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  String email = '';
+  String password = '';
+  String error = '';
+  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -96,6 +101,9 @@ class MyStatefulWidgetState extends State<MyStatefulWidget> {
 
                   hintText: 'abcd@gmail.com',
                 ),
+                 onChanged: (value) {
+                  setState(() => email = value);
+                },
               ),
             ),
             Container(
@@ -127,6 +135,10 @@ class MyStatefulWidgetState extends State<MyStatefulWidget> {
 
                   hintText: '**********',
                 ),
+                                onChanged: (val) {
+                  setState(() => password = val);
+                },
+                obscureText: true,
               ),
             ),
             Container(
@@ -147,9 +159,16 @@ class MyStatefulWidgetState extends State<MyStatefulWidget> {
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => RegistrationPage()));
-                  },
+                    _auth.signin(email, password).then((value) => {
+                          if (value == "True")
+                            {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegistrationPage()))
+                            }
+                        });
+},
                   child: const Text(
                     "Login",
                     style: TextStyle(
@@ -173,8 +192,8 @@ class MyStatefulWidgetState extends State<MyStatefulWidget> {
                     style: TextStyle(fontSize: 12),
                   ),
                   onPressed: () {
-                   Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => UserRegistration()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UserRegistration()));
                   },
                 )
               ],

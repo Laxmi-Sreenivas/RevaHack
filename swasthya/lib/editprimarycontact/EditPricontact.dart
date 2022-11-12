@@ -1,11 +1,12 @@
-import 'package:swasthya/TopBar/topbarback.dart';
+import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/editprimarycontact/primarycard.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya/registrationpage/carddata.dart';
+import 'package:swasthya/services/services.dart';
 
 class EditpriContact extends StatelessWidget {
-  const EditpriContact({Key? key}) : super(key: key);
-
+  EditpriContact({Key? key}) : super(key: key);
+  final AuthService _auth = AuthService();
   static const String _title = 'Sample App';
 
   @override
@@ -13,7 +14,7 @@ class EditpriContact extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        appBar: TopBarBack(),
+        appBar: TopBar(),
         backgroundColor: Color.fromARGB(255, 145, 177, 242),
         body: const MyStatefulWidget(),
       ),
@@ -33,8 +34,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController genderController = TextEditingController();
   TextEditingController bgController = TextEditingController();
   TextEditingController mbnoController = TextEditingController();
-
+  String name = '';
+  String cmno = '';
   String? Selectedgender;
+  final AuthService _auth = AuthService();
   String? selectedBloodGroup;
   // List of items in our dropdown menu
   var genders = [
@@ -79,7 +82,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
               child: const Text(
-                'User Full Name',
+                'Full Name',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -103,10 +106,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Full Name',
                 ),
+                onChanged: (value) {
+                  setState(() => name = value);
+                },
               ),
             ),
-            
-            
             Container(
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
@@ -121,26 +125,23 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: EdgeInsets.fromLTRB(30, 5, 30, 0),
               child: TextField(
-                controller: mbnoController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    borderSide: BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
+                  controller: mbnoController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
                     ),
+                    filled: true, //<-- SEE HERE
+                    fillColor: Color.fromARGB(255, 255, 255, 255),
+                    hintText: '+91 00000 00000',
                   ),
-                  filled: true, //<-- SEE HERE
-                  fillColor: Color.fromARGB(255, 255, 255, 255),
-                  hintText: '+91 00000 00000',
-                ),
-              ),
+                  onChanged: (value) {
+                    setState(() => cmno = value);
+                  }),
             ),
-
-            
-            
-            
-            
             Container(
               alignment: Alignment.center,
               padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
@@ -158,7 +159,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: null,
+                  onPressed: (() {
+                    if(_auth.EditPrimarydetails(name, cmno) == "True")
+                    {
+                      print("Succesfull");
+                    }
+                    else
+                    {
+                      print("Try again");
+                    }
+                  }),
                   child: const Text(
                     "Update",
                     style: TextStyle(
@@ -169,7 +179,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               ),
             ),
-                      ],
+          ],
         ));
   }
 }

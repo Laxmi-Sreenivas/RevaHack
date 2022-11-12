@@ -1,5 +1,7 @@
 import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/TopBar/topbarback.dart';
+import 'package:swasthya/editdetails/editdetails.dart';
+import 'package:swasthya/editprimarycontact/EditPricontact.dart';
 import 'package:swasthya/profilepage/profilepagecard.dart';
 import 'package:swasthya/userlogin/userlogin.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +13,7 @@ class profilepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 194, 222, 255),
-      appBar: TopBarBack(),
+      appBar: TopBar(),
       // appBar: AppBar(
       //   backgroundColor:  Color.fromARGB(255, 111, 177, 255),
       //   leading: BackButton(
@@ -50,7 +52,8 @@ class profilepage extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(10, 10, 30, 0),
                   
                   child: TextButton(
-                    onPressed: null,
+                    onPressed: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => EditDetails())),
                     child: const Text(
                       "Edit Details",
                       style: TextStyle(
@@ -95,7 +98,8 @@ class profilepage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 0, 30, 10),
                   child: TextButton(
-                    onPressed: null,
+                    onPressed: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => EditpriContact())),
                     child: const Text(
                       "Edit Primary Contacts",
                       style: TextStyle(

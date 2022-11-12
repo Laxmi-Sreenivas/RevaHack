@@ -1,6 +1,7 @@
 import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya/userlogin/userlogin.dart';
+import 'package:swasthya/services/services.dart';
 
 class UserRegistration extends StatelessWidget {
   const UserRegistration({Key? key}) : super(key: key);
@@ -48,9 +49,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController repassController = TextEditingController();
-
+  final AuthService _auth = AuthService();
   String? Selectedgender;
   String? selectedBloodGroup;
+  String name = '';
+  String dob = '';
+  String aadhar = '';
+  String mno = '';
+  String fname = '';
+  String email = '';
+  String pass = '';
+  String repass = '';
+  String cmno = '';
   // List of items in our dropdown menu
   var genders = [
     'Male',
@@ -125,10 +135,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Full Name',
                 ),
+                onChanged: (value) {
+                  setState(() => fname = value);
+                },
               ),
             ),
             Container(
-              
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
               child: const Text(
@@ -143,20 +155,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               height: 60,
               padding: EdgeInsets.fromLTRB(30, 0, 200, 0),
               child: TextField(
-                controller: dobController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    borderSide: BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
+                  controller: dobController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
                     ),
+                    filled: true, //<-- SEE HERE
+                    fillColor: Color.fromARGB(255, 255, 255, 255),
+                    hintText: 'DD/MM/YYYY',
                   ),
-                  filled: true, //<-- SEE HERE
-                  fillColor: Color.fromARGB(255, 255, 255, 255),
-                  hintText: 'DD/MM/YYYY',
-                ),
-              ),
+                  onChanged: (value) {
+                    setState(() => dob = value);
+                  }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -199,9 +213,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(6.0),
                       ),
-                      
                       child: DropdownButton(
-                        
                         hint: Text("Gender"),
                         value: Selectedgender,
                         items: genders
@@ -236,7 +248,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   child: SizedBox(
                     width: 150,
                     child: Container(
-                      
                       padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.0),
@@ -285,9 +296,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: '+91 00000 00000',
                 ),
+                onChanged: (value) {
+                  setState(() => mno = value);
+                },
               ),
             ),
-
             Container(
               alignment: Alignment.centerLeft,
               padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
@@ -302,20 +315,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: EdgeInsets.fromLTRB(30, 5, 30, 0),
               child: TextField(
-                controller: aadharController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    borderSide: BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
+                  controller: aadharController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
                     ),
+                    filled: true, //<-- SEE HERE
+                    fillColor: Color.fromARGB(255, 255, 255, 255),
+                    hintText: '1234 5566 8899',
                   ),
-                  filled: true, //<-- SEE HERE
-                  fillColor: Color.fromARGB(255, 255, 255, 255),
-                  hintText: '1234 5566 8899',
-                ),
-              ),
+                  onChanged: (value) {
+                    setState(() => aadhar = value);
+                  }),
             ),
             Container(
               alignment: Alignment.centerLeft,
@@ -363,6 +378,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Full Name',
                 ),
+                onChanged: (value) {
+                  setState(() => name = value);
+                },
               ),
             ),
             Container(
@@ -379,20 +397,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: EdgeInsets.fromLTRB(30, 5, 30, 0),
               child: TextField(
-                controller: pmbnoController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    borderSide: BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
+                  controller: pmbnoController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
                     ),
+                    filled: true, //<-- SEE HERE
+                    fillColor: Color.fromARGB(255, 255, 255, 255),
+                    hintText: '+91 00000 00000',
                   ),
-                  filled: true, //<-- SEE HERE
-                  fillColor: Color.fromARGB(255, 255, 255, 255),
-                  hintText: '+91 00000 00000',
-                ),
-              ),
+                  onChanged: (value) {
+                    setState(() => cmno = value);
+                  }),
             ),
             Container(
               alignment: Alignment.centerLeft,
@@ -440,6 +460,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'abcd@gmail.com',
                 ),
+                 onChanged: (value) {
+                  setState(() => email = value);
+                },
               ),
             ),
             Container(
@@ -469,6 +492,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: '**********',
                 ),
+                                onChanged: (value) {
+                  setState(() => pass = value);
+                },
+                obscureText: true,
               ),
             ),
             Container(
@@ -478,7 +505,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 '*Contains atleast 8 characters',
                 style: TextStyle(
                   fontSize: 12,
-                  
                 ),
               ),
             ),
@@ -509,6 +535,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: '**********',
                 ),
+                               onChanged: (value) {
+                  setState(() => repass = value);
+                },
+                obscureText: true,
               ),
             ),
             Container(
@@ -528,8 +558,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => userlogin())),
+                  onPressed: () {
+                     _auth.register(
+                          name,
+                          dob,
+                          aadhar,
+                          mno,
+                          fname,
+                          email,
+                          pass,
+                          cmno,
+                          Selectedgender.toString(),
+                          selectedBloodGroup.toString());
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => userlogin()));
+                  },
                   child: const Text(
                     "Register",
                     style: TextStyle(
@@ -545,24 +588,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 Container(
                   padding: EdgeInsets.fromLTRB(100, 0, 0, 0),
                   child: const Text(
-                  'Already Registered?',
-                  style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),
+                    'Already Registered?',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
-                  child:
-                    TextButton(
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    onPressed: () {
-                      Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => userlogin()));
-                    },
-                  )
-                ),
-                
+                    child: TextButton(
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => userlogin()));
+                  },
+                )),
               ],
             ),
           ],
