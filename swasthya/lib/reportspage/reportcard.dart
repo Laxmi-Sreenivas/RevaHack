@@ -1,4 +1,4 @@
-import 'package:design/reportspage/reportcarddata.dart';
+import 'package:swasthya/reportspage/reportcarddata.dart';
 import 'package:flutter/material.dart';
 
 class ReportCard extends StatelessWidget {

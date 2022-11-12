@@ -1,6 +1,6 @@
-import 'package:design/TopBar/topbar.dart';
-import 'package:design/navigationpage/navigationbar.dart';
-import 'package:design/reportspage/reportcard.dart';
+import 'package:swasthya/TopBar/topbar.dart';
+import 'package:swasthya/navigationpage/navigationbar.dart';
+import 'package:swasthya/reportspage/reportcard.dart';
 
 
 import 'package:flutter/material.dart';

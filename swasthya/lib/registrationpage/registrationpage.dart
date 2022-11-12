@@ -1,8 +1,8 @@
-import 'package:design/TopBar/topbar.dart';
-import 'package:design/navigationpage/navigationbar.dart';
-import 'package:design/registrationpage/doctordata.dart';
-import 'package:design/registrationpage/healthcard.dart';
-import 'package:design/registrationpage/specialtext.dart';
+import 'package:swasthya/TopBar/topbar.dart';
+import 'package:swasthya/navigationpage/navigationbar.dart';
+import 'package:swasthya/registrationpage/doctordata.dart';
+import 'package:swasthya/registrationpage/healthcard.dart';
+import 'package:swasthya/registrationpage/specialtext.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationPage extends StatefulWidget {

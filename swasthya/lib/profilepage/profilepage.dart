@@ -1,6 +1,6 @@
-import 'package:design/TopBar/topbar.dart';
-import 'package:design/TopBar/topbarback.dart';
-import 'package:design/userlogin/userlogin.dart';
+import 'package:swasthya/TopBar/topbar.dart';
+import 'package:swasthya/TopBar/topbarback.dart';
+import 'package:swasthya/userlogin/userlogin.dart';
 import 'package:flutter/material.dart';
 
 class profilepage extends StatelessWidget {

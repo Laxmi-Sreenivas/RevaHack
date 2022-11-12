@@ -1,4 +1,4 @@
-import 'package:design/registrationpage/specialtext.dart';
+import 'package:swasthya/registrationpage/specialtext.dart';
 import 'package:flutter/material.dart';
 
 class CardData extends StatelessWidget {

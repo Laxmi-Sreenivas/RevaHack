@@ -1,5 +1,5 @@
-import 'package:design/TopBar/topbarback.dart';
-import 'package:design/navigationpage/navicons.dart';
+import 'package:swasthya/TopBar/topbarback.dart';
+import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
 
 class EditDetails extends StatelessWidget {

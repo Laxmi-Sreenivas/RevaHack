@@ -1,4 +1,4 @@
-import 'package:design/registrationpage/carddata.dart';
+import 'package:swasthya/registrationpage/carddata.dart';
 import 'package:flutter/material.dart';
 
 class HealthCard extends StatelessWidget {

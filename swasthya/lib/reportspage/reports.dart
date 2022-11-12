@@ -1,9 +1,7 @@
-import 'dart:ui';
-
-import 'package:design/navigationpage/navicons.dart';
+import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
-import 'package:design/TopBar/topbar.dart';
-import 'package:design/navigationpage/navigationbar.dart';
+import 'package:swasthya/TopBar/topbar.dart';
+import 'package:swasthya/navigationpage/navigationbar.dart';
 
 class reports extends StatelessWidget {
   const reports({Key? key}) : super(key: key);

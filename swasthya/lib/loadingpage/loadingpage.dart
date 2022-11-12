@@ -1,4 +1,4 @@
-import 'package:design/loginpage/loginpage.dart';
+import 'package:swasthya/loginpage/loginpage.dart';
 import 'package:flutter/material.dart';
 
 class LoadingPage extends StatelessWidget{

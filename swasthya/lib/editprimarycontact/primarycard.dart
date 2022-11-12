@@ -1,4 +1,4 @@
-import 'package:design/editprimarycontact/pricarddata.dart';
+import 'package:swasthya/editprimarycontact/pricarddata.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryCard extends StatelessWidget {

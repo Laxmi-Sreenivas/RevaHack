@@ -1,4 +1,4 @@
-import 'package:design/navigationpage/navigationbar.dart';
+import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:flutter/material.dart';
 
 class UserRegistration extends StatelessWidget {

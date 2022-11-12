@@ -1,5 +1,5 @@
-import 'package:design/TopBar/topbar.dart';
-import 'package:design/navigationpage/navigationbar.dart';
+import 'package:swasthya/TopBar/topbar.dart';
+import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:flutter/material.dart';
 
 class appointments extends StatefulWidget {

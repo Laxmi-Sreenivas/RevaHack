@@ -1,5 +1,5 @@
-import 'package:design/navigationpage/dispalyicon.dart';
-import 'package:design/navigationpage/navicons.dart';
+import 'package:swasthya/navigationpage/dispalyicon.dart';
+import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatefulWidget {

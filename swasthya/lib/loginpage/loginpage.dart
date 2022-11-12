@@ -1,5 +1,5 @@
-import 'package:design/doctorlogin/doctorlogin.dart';
-import 'package:design/userlogin/userlogin.dart';
+import 'package:swasthya/doctorlogin/doctorlogin.dart';
+import 'package:swasthya/userlogin/userlogin.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatelessWidget {

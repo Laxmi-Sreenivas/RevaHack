@@ -1,6 +1,6 @@
-import 'package:design/registrationpage/specialtext.dart';
+import 'package:swasthya/registrationpage/specialtext.dart';
 import 'package:flutter/material.dart';
-import 'package:design/navigationpage/navicons.dart';
+import 'package:swasthya/navigationpage/navicons.dart';
 
 class ReportCardData extends StatelessWidget {
   final List<String> reportcardDetails;

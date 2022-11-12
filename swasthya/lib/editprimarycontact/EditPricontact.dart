@@ -1,7 +1,7 @@
-import 'package:design/TopBar/topbarback.dart';
-import 'package:design/editprimarycontact/primarycard.dart';
+import 'package:swasthya/TopBar/topbarback.dart';
+import 'package:swasthya/editprimarycontact/primarycard.dart';
 import 'package:flutter/material.dart';
-import 'package:design/registrationpage/carddata.dart';
+import 'package:swasthya/registrationpage/carddata.dart';
 
 class EditpriContact extends StatelessWidget {
   const EditpriContact({Key? key}) : super(key: key);
