@@ -1,5 +1,6 @@
 import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/profilepage/profilepage.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   const TopBar({Key? key}) : super(key: key);
@@ -28,7 +29,8 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
             SizedBox(
               height: 66,
               child: IconButton(
-                  onPressed: null,
+                  onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => profilepage())),
                   icon: Icon(
                     NavIcons.profile,
                     size: 40,

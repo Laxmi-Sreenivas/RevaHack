@@ -1,6 +1,10 @@
+import 'package:swasthya/appointments/appointments.dart';
 import 'package:swasthya/navigationpage/dispalyicon.dart';
 import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/registrationpage/registrationpage.dart';
+import 'package:swasthya/reportspage/report.dart';
+import 'package:swasthya/reportspage/reports.dart';
 
 class NavBar extends StatefulWidget {
   int pageIndex;
@@ -25,7 +29,7 @@ class NavBarState extends State<NavBar> {
         ),
         BottomNavigationBarItem(
           icon: DisplayIcon(iconData: NavIcons.report),
-          label: 'Report',
+          label: 'Reports',
         ),
         BottomNavigationBarItem(
           icon: DisplayIcon(iconData: NavIcons.appointment),
@@ -41,6 +45,25 @@ class NavBarState extends State<NavBar> {
       onTap: (int index) => {
         setState(() {
           widget.pageIndex = index;
+          switch (widget.pageIndex) {
+            case 0:
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => RegistrationPage()));
+              break;
+            case 1:
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Report()));
+              break;
+            case 2:
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => appointments()));
+              break;
+            //  case 3:
+            //   () => Navigator.of(context)
+            //             .push(MaterialPageRoute(builder: (context) => Report()));
+            // break;
+            default:
+          }
         })
       },
       backgroundColor: Color.fromARGB(255, 111, 177, 255),

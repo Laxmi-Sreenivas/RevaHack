@@ -35,7 +35,7 @@ class ReportState extends State<Report> {
         ],
       ),),
       bottomNavigationBar: NavBar(
-        pageIndex: 0,
+        pageIndex: 1,
       ),
     );
   }

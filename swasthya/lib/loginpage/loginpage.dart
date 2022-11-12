@@ -1,6 +1,7 @@
 import 'package:swasthya/doctorlogin/doctorlogin.dart';
 import 'package:swasthya/userlogin/userlogin.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/userregistration/userregistration.dart';
 
 class Loginpage extends StatelessWidget {
   const Loginpage({Key? key}) : super(key: key);
@@ -75,7 +76,8 @@ class Loginpage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.zero,
                   child: TextButton(
-                    onPressed: null,
+                    onPressed: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => UserRegistration())),
                     child: const Text(
                       "Register Now",
                       style: TextStyle(
@@ -105,7 +107,7 @@ class Loginpage extends StatelessWidget {
               child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
-                      Color.fromARGB(255,194,222,255),
+                      Color.fromARGB(255, 194, 222, 255),
                     ),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(

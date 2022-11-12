@@ -1,5 +1,6 @@
 import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/userlogin/userlogin.dart';
 
 class UserRegistration extends StatelessWidget {
   const UserRegistration({Key? key}) : super(key: key);
@@ -43,6 +44,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController aadharController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
   TextEditingController mbnoController = TextEditingController();
+  TextEditingController pmbnoController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   TextEditingController repassController = TextEditingController();
@@ -377,7 +379,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: EdgeInsets.fromLTRB(30, 5, 30, 0),
               child: TextField(
-                controller: mbnoController,
+                controller: pmbnoController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
@@ -526,7 +528,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: null,
+                  onPressed: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => userlogin())),
                   child: const Text(
                     "Register",
                     style: TextStyle(
@@ -554,7 +557,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         style: TextStyle(fontSize: 12),
                       ),
                     onPressed: () {
-                      //signup screen
+                      Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => userlogin()));
                     },
                   )
                 ),
