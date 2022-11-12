@@ -24,7 +24,7 @@ class LoadingPage extends StatelessWidget{
           Container(
             padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
             child: Image.asset(
-              "lib/assets/ECGgif.gif",
+              "lib/assets/ECG.gif",
               width: 500,
               height: 200,
             ),
