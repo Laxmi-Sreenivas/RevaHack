@@ -16,7 +16,6 @@ class Report extends StatefulWidget {
 class ReportState extends State<Report> {
   AuthService _auth = AuthService();
   List<ReportCard> reportList = [];
-  bool isLoading = true;
 
   void getReports() async {
     List<List<String>> reportRaw = await _auth.getHealthrec();
@@ -25,7 +24,7 @@ class ReportState extends State<Report> {
         reportData: element,
       ));
     });
-    isLoading = false;
+    
     if (mounted) setState(() {});
   }
 
