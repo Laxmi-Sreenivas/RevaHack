@@ -1,10 +1,11 @@
 import 'package:swasthya/appointments/appointments.dart';
+import 'package:swasthya/medicines/medicines.dart';
 import 'package:swasthya/navigationpage/dispalyicon.dart';
 import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya/registrationpage/registrationpage.dart';
 import 'package:swasthya/reportspage/report.dart';
-import 'package:swasthya/reportspage/reports.dart';
+import 'package:swasthya/medicines/medicines.dart';
 
 class NavBar extends StatefulWidget {
   int pageIndex;
@@ -58,10 +59,10 @@ class NavBarState extends State<NavBar> {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => appointments()));
               break;
-            //  case 3:
-            //   () => Navigator.of(context)
-            //             .push(MaterialPageRoute(builder: (context) => Report()));
-            // break;
+             case 3:
+              Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Medicinepage()));
+            break;
             default:
           }
         })

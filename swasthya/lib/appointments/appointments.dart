@@ -1,4 +1,5 @@
 import 'package:swasthya/TopBar/topbar.dart';
+import 'package:swasthya/appointments/appointmentscard.dart';
 import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:flutter/material.dart';
 
@@ -42,8 +43,20 @@ class appointmentsState extends State<appointments> {
             ),
             padding: EdgeInsets.fromLTRB(60, 30, 60, 30),
             child: Container(
-              padding: EdgeInsets.all(30),
-              child: Icon(Icons.plumbing_sharp),
+              padding: EdgeInsets.all(20),
+              child: Column(children: <Widget>[
+                Icon(Icons.plus_one_outlined,size: 40,),
+                SizedBox(
+                  width: 100,
+                  child: Center( child: Column(
+                    children: <Widget>[
+                      Text("Book an"),
+                      Text("Appointment")
+                    ],
+                  )),
+                ),
+                
+              ],)
             ),
           ),
           Container(
@@ -194,6 +207,7 @@ class appointmentsState extends State<appointments> {
               ],
             ),
           ),
+          AppointmentsCard(),
         ],
       ),
       bottomNavigationBar: NavBar(

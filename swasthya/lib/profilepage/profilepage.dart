@@ -1,5 +1,6 @@
 import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/TopBar/topbarback.dart';
+import 'package:swasthya/profilepage/profilepagecard.dart';
 import 'package:swasthya/userlogin/userlogin.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,11 @@ class profilepage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
+            padding: EdgeInsets.all(10),
+            child: ProfilePageCard(),
+          ),
+          
+          Container(
             padding: EdgeInsets.fromLTRB(30, 10, 30, 0),  
           child: Container(
             
@@ -37,6 +43,7 @@ class profilepage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+               
                 Container(
                   
                   

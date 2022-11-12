@@ -1,6 +1,7 @@
 import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya/profilepage/profilepage.dart';
+import 'package:swasthya/registrationpage/registrationpage.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   const TopBar({Key? key}) : super(key: key);
@@ -14,10 +15,12 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
           children: <Widget>[
             Spacer(flex: 2),
             ElevatedButton(
-              onPressed: null,
+              onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => RegistrationPage())),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
-                    Color.fromARGB(255, 111, 177, 255)),
+                    Color.fromARGB(255, 111, 177, 255)), 
+                elevation: MaterialStateProperty.resolveWith((states) => 0), 
               ),
               child: Container(
                 padding: EdgeInsets.only(top: 12),
