@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swasthya/doctorhome/doctorhome.dart';
 
 class doctorlogin extends StatelessWidget {
   const doctorlogin({Key? key}) : super(key: key);
@@ -137,7 +138,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     )
                   )
                 ),
-                onPressed: null,
+                onPressed: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => DoctorHome())),
                 child: const 
                   Text("Login",
                   style: TextStyle(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:swasthya/TopBar/doctortopbar.dart';
+import 'package:swasthya/patientdetails/patientdetails.dart';
 import 'package:swasthya/registrationpage/registrationpage.dart';
 import 'package:swasthya/userregistration/userregistration.dart';
 
-class userlogin extends StatelessWidget {
-  const userlogin({Key? key}) : super(key: key);
+class OtpVerify extends StatelessWidget {
+  const OtpVerify({Key? key}) : super(key: key);
 
   static const String _title = 'Sample App';
 
@@ -12,8 +14,7 @@ class userlogin extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        
-        backgroundColor: Color.fromARGB(255, 145, 177, 242),
+        appBar: DoctorTopBar(),
         body: const MyStatefulWidget(),
       ),
     );
@@ -28,7 +29,7 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class MyStatefulWidgetState extends State<MyStatefulWidget> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -37,30 +38,11 @@ class MyStatefulWidgetState extends State<MyStatefulWidget> {
         padding: const EdgeInsets.all(0),
         child: ListView(
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Container(
-                  height: 270,
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("lib/assets/Logo_BG.png"),
-                        fit: BoxFit.cover),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(60, 90, 60, 0),
-                  child: Center(
-                    child: Image.asset("lib/assets/Logo-Transparent.png"),
-                  ),
-                ),
-              ],
-            ),
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.fromLTRB(10, 30, 10, 10),
               child: const Text(
-                'Login',
+                'Enter OTP',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
@@ -68,67 +50,40 @@ class MyStatefulWidgetState extends State<MyStatefulWidget> {
               ),
             ),
             Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.fromLTRB(30, 0, 30, 30),
               child: const Text(
-                'Email ',
+                'We have sent an OTP to patient ',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            Container(
+             Container(
               height: 60,
-              padding: EdgeInsets.fromLTRB(30, 5, 30, 0),
+              
+              padding: EdgeInsets.fromLTRB(30, 5, 30, 10),
               child: TextField(
-                controller: nameController,
+                controller: otpController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
                     borderSide: BorderSide(
-                      width: 0,
+                      width: 2,
                       style: BorderStyle.none,
                     ),
                   ),
                   filled: true, //<-- SEE HERE
                   fillColor: Color.fromARGB(255, 255, 255, 255),
 
-                  hintText: 'abcd@gmail.com',
+                  hintText: 'OTP',
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
-              child: const Text(
-                'Password',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Container(
-              height: 60,
-              padding: EdgeInsets.fromLTRB(30, 5, 30, 0),
-              child: TextField(
-                controller: passwordController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    borderSide: BorderSide(
-                      width: 0,
-                      style: BorderStyle.none,
-                    ),
-                  ),
-                  filled: true, //<-- SEE HERE
-                  fillColor: Color.fromARGB(255, 255, 255, 255),
-
-                  hintText: '**********',
-                ),
-              ),
-            ),
+            
+            
+            
             Container(
               alignment: Alignment.center,
               padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
@@ -146,12 +101,10 @@ class MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => RegistrationPage()));
-                  },
+                  onPressed: () => Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => PatientDetails())),
                   child: const Text(
-                    "Login",
+                    "Confirm",
                     style: TextStyle(
                         fontSize: 20,
                         color: Color.fromARGB(255, 255, 255, 255),
@@ -160,24 +113,34 @@ class MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  'Not Registered?',
-                  style: TextStyle(fontSize: 12),
-                ),
-                TextButton(
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child: SizedBox(
+                height: 55, //height of button
+                width: 220, //width of button
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 255, 255, 255),
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        
+                        side: BorderSide(
+                            color: Color.fromARGB(255, 17, 98, 255), width: 3),
+                      ))),
+                  onPressed: null,
                   child: const Text(
-                    'Register Now',
-                    style: TextStyle(fontSize: 12),
+                    "Resend",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 30, 105, 255),
+                        fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {
-                   Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => UserRegistration()));
-                  },
-                )
-              ],
+                ),
+              ),
             ),
           ],
         ));
