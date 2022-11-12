@@ -64,7 +64,7 @@ class Doctorprofilepage extends StatelessWidget {
                   child: TextButton(
                     onPressed: null,
                     child: const Text(
-                      "Download Reports",
+                      "Download Patient List",
                       style: TextStyle(
                         fontSize: 20,
                         color: Color.fromARGB(255, 0, 0, 0),
@@ -86,7 +86,7 @@ class Doctorprofilepage extends StatelessWidget {
                   child: TextButton(
                     onPressed: null,
                     child: const Text(
-                      "Edit Primary Contacts",
+                      "Manage Appointments",
                       style: TextStyle(
                         fontSize: 20,
                         color: Color.fromARGB(255, 0, 0, 0),
