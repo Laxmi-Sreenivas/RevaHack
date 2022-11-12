@@ -4,6 +4,7 @@ import 'package:swasthya/registrationpage/doctordata.dart';
 import 'package:swasthya/registrationpage/healthcard.dart';
 import 'package:swasthya/registrationpage/specialtext.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/services/services.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -15,6 +16,25 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class RegistrationPageState extends State<RegistrationPage> {
+  AuthService _auth = AuthService();
+  List<DoctorData> doctorData = [];
+  bool isLoading = true;
+
+  void getDoctorData() async {
+    Set<List<String>> doctorRaw = await _auth.get_doctors();
+
+    doctorRaw.forEach((element) {
+      doctorData.add(DoctorData(doctorInfo: element));
+    });
+
+    if (mounted) setState(() {});
+  }
+
+  void initState() {
+    super.initState();
+    getDoctorData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,32 +53,7 @@ class RegistrationPageState extends State<RegistrationPage> {
           Flexible(
               child: GridView.count(
             crossAxisCount: 2,
-            children: const <Widget>[
-              DoctorData(
-                doctorInfo: [
-                  "Dr Praveen Kumar",
-                  "Sunshine Hospitals",
-                  "drpraveen@gmail.com",
-                  "03/10/2022"
-                ],
-              ),
-              DoctorData(
-                doctorInfo: [
-                  "Dr Praveen Kumar",
-                  "Sunshine Hospitals",
-                  "drpraveen@gmail.com",
-                  "03/10/2022"
-                ],
-              ),
-              DoctorData(
-                doctorInfo: [
-                  "Dr Praveen Kumar",
-                  "Sunshine Hospitals",
-                  "drpraveen@gmail.com",
-                  "03/10/2022"
-                ],
-              )
-            ],
+            children: doctorData,
           ))
         ],
       ),

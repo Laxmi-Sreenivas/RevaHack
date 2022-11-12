@@ -2,7 +2,9 @@ import 'package:swasthya/reportspage/reportcarddata.dart';
 import 'package:flutter/material.dart';
 
 class ReportCard extends StatelessWidget {
-  const ReportCard({Key? key}) : super(key: key);
+  final reportData;
+
+  ReportCard({Key? key,required this.reportData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,8 @@ class ReportCard extends StatelessWidget {
       ),
       padding: EdgeInsets.zero,
       child: Column(
-        children: const <Widget>[
-          ReportCardData(reportcardDetails : <String>["Viral Fever","Murali","27/03/2002"]),
+        children: <Widget>[
+          ReportCardData(reportcardDetails : reportData),
         ],
       ),
     );

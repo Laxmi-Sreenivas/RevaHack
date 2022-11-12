@@ -36,6 +36,10 @@ class AuthService {
       firebaseuser = FirebaseAuth.instance.currentUser;
       String a = FirebaseAuth.instance.currentUser!.uid;
       await FirebaseFirestore.instance
+          .collection('map')
+          .doc(firebaseuser.uid)
+          .set({'present no': 0});
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(firebaseuser.uid)
           .set({
@@ -75,30 +79,79 @@ class AuthService {
     return lst;
   }
 
-  Future<List<String>> getHealthrec() async {
+  Future<Set<List<String>>> get_doctors() async {
     firebaseuser = FirebaseAuth.instance.currentUser;
     final uref = FirebaseFirestore.instance.collection('healthrec');
-    DocumentSnapshot<Map<String, dynamic>> d =
-        await uref.doc(firebaseuser.uid).get();
+    Set<List<String>> res = new Set<List<String>>();
     final temp = FirebaseFirestore.instance.collection('map');
     DocumentSnapshot<Map<String, dynamic>> t =
         await temp.doc(firebaseuser.uid).get();
-    int presentNo = await t['presentno'];
-    List<String> lst = [];
-    for (int i = 1; i < presentNo + 1; i++) {
-      DocumentSnapshot<Map<String, dynamic>> k = await FirebaseFirestore
-          .instance
-          .collection('healthrec')
-          .doc(firebaseuser.uid)
-          .collection(i.toString())
-          .doc('ABCD')
-          .get();
 
-      lst.add(k['Name']);
-      lst.add(k['Diagnosis']);
+    DocumentSnapshot<Map<String, dynamic>> d =
+        await uref.doc(firebaseuser.uid).get();
+
+    final doc = FirebaseFirestore.instance.collection('healthrec');
+
+    int presentNo = await t['presentno'];
+    if (presentNo == 0)
+      return res;
+    else {
+      for (int i = presentNo; i > 0; i--) {
+        List<String> lst = [];
+        DocumentSnapshot<Map<String, dynamic>> k = await FirebaseFirestore
+            .instance
+            .collection('healthrec')
+            .doc(firebaseuser.uid)
+            .collection(i.toString())
+            .doc('ABCD')
+            .get();
+        String s = k["Docid"];
+
+        DocumentSnapshot<Map<String, dynamic>> l =
+            await FirebaseFirestore.instance.collection('doctors').doc(s).get();
+        lst.add(l['Name']);
+        lst.add(l['Hospital']);
+        lst.add(l['email']);
+        lst.add(k['date']);
+        res.add(lst);
+      }
+      print(res);
+      return res;
     }
-    print(lst);
-    return lst;
+  }
+
+  Future<List<List<String>>> getHealthrec() async {
+    firebaseuser = FirebaseAuth.instance.currentUser;
+    final uref = FirebaseFirestore.instance.collection('healthrec');
+    List<List<String>> res = [];
+    final temp = FirebaseFirestore.instance.collection('map');
+    DocumentSnapshot<Map<String, dynamic>> t =
+        await temp.doc(firebaseuser.uid).get();
+
+    DocumentSnapshot<Map<String, dynamic>> d =
+        await uref.doc(firebaseuser.uid).get();
+
+    int presentNo = await t['presentno'];
+    if (presentNo == 0)
+      return res;
+    else {
+      for (int i = 1; i < presentNo + 1; i++) {
+        List<String> lst = [];
+        DocumentSnapshot<Map<String, dynamic>> k = await FirebaseFirestore
+            .instance
+            .collection('healthrec')
+            .doc(firebaseuser.uid)
+            .collection(i.toString())
+            .doc('ABCD')
+            .get();
+
+        lst.add(k['Name']);
+        lst.add(k['Diagnosis']);
+        lst.add(k['date']);
+        res.add(lst);
+      }
+    }
+    return res;
     //}
   }
 
@@ -150,21 +203,21 @@ class AuthService {
       var b = {'Gender': selectedgender};
       var c = {'Blood_Group': selectedBloodGroup};
       var def = {'Mobile_No': mno};
-       await FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(firebaseuser.uid)
           .update(a);
-       await FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(firebaseuser.uid)
           .update(b);
 
-         await FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(firebaseuser.uid)
           .update(c);
 
-           await FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection('users')
           .doc(firebaseuser.uid)
           .update(def);

@@ -20,6 +20,7 @@ class PatientDetails extends StatefulWidget {
 }
 
 class PatientDetailsState extends State<PatientDetails> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
