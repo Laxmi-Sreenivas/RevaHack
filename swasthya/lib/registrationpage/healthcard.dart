@@ -1,8 +1,33 @@
 import 'package:swasthya/registrationpage/carddata.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/services/services.dart';
 
-class HealthCard extends StatelessWidget {
-  const HealthCard({Key? key}) : super(key: key);
+class HealthCard extends StatefulWidget {
+  HealthCard({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    return HealthCardState();
+  }
+}
+
+class HealthCardState extends State<HealthCard> {
+  AuthService _auth = AuthService();
+  bool isLoading = true;
+  List<String> details = [];
+
+  void getDetails() async {
+    details.addAll(await _auth.getHealthcard());
+    await _auth.getHealthrec();
+    isLoading = false;
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDetails();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +39,18 @@ class HealthCard extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       padding: EdgeInsets.fromLTRB(25, 6, 25, 20),
-      child: Column(
-        children: const <Widget>[
-          Text(
-            "Health Card",
-            style: TextStyle(fontSize: 20),
-          ),
-          Divider(height: 20, thickness: 2, color: Colors.black),
-          CardData(cardDetails : <String>["Murali Jayam","#","27/03/2002","B +ve","Male","**** **** 4433","+91 ******8576"]),
-        ],
-      ),
+      child: isLoading
+          ? null
+          : Column(
+              children: <Widget>[
+                Text(
+                  "Health Card",
+                  style: TextStyle(fontSize: 20),
+                ),
+                Divider(height: 20, thickness: 2, color: Colors.black),
+                CardData(cardDetails: details),
+              ],
+            ),
     );
   }
 }
