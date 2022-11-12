@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:swasthya/registrationpage/doctordata.dart';
