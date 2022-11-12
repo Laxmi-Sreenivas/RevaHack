@@ -1,4 +1,4 @@
-import 'package:swasthya/TopBar/topbarback.dart';
+import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/editprimarycontact/primarycard.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya/registrationpage/carddata.dart';
@@ -13,7 +13,7 @@ class EditpriContact extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        appBar: TopBarBack(),
+        appBar: TopBar(),
         backgroundColor: Color.fromARGB(255, 145, 177, 242),
         body: const MyStatefulWidget(),
       ),
