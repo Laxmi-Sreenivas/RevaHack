@@ -18,7 +18,6 @@ class HealthCardState extends State<HealthCard> {
 
   void getDetails() async {
     details.addAll(await _auth.getHealthcard());
-    await _auth.getHealthrec();
     isLoading = false;
     if (mounted) setState(() {});
   }
