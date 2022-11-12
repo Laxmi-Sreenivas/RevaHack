@@ -90,7 +90,7 @@ class AuthService {
           .instance
           .collection('healthrec')
           .doc(firebaseuser.uid)
-          .collection(presentNo.toString())
+          .collection(i.toString())
           .doc('ABCD')
           .get();
 
@@ -100,5 +100,78 @@ class AuthService {
     print(lst);
     return lst;
     //}
+  }
+
+  Future<List<String>> getAppointment() async {
+    firebaseuser = FirebaseAuth.instance.currentUser;
+    final uref = FirebaseFirestore.instance.collection('appointments');
+    DocumentSnapshot<Map<String, dynamic>> d =
+        await uref.doc(firebaseuser.uid).get();
+    final temp = FirebaseFirestore.instance.collection('appoint_map');
+    DocumentSnapshot<Map<String, dynamic>> t =
+        await temp.doc(firebaseuser.uid).get();
+    int presentNo = await t['appoint_num'];
+    List<String> lst = [];
+
+    return lst;
+  }
+
+  Future<String> EditPrimarydetails(String name, String cmno) async {
+    firebaseuser = FirebaseAuth.instance.currentUser;
+    try {
+      final uref = FirebaseFirestore.instance.collection('users');
+      DocumentSnapshot<Map<String, dynamic>> d =
+          await uref.doc(firebaseuser.uid).get();
+      var a = {'Contact_Name': name};
+      var b = {'Contact_Mobile_No': cmno};
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseuser.uid)
+          .update(a);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseuser.uid)
+          .update(b);
+      return ("True");
+    } catch (e) {
+      return "False";
+    }
+  }
+
+  Future<String> Editdetails(String fname, String mno, String selectedgender,
+      String selectedBloodGroup) async {
+    firebaseuser = FirebaseAuth.instance.currentUser;
+    try {
+      final uref = FirebaseFirestore.instance.collection('users');
+      DocumentSnapshot<Map<String, dynamic>> d =
+          await uref.doc(firebaseuser.uid).get();
+
+      var a = {'Full_Name': fname};
+      var b = {'Gender': selectedgender};
+      var c = {'Blood_Group': selectedBloodGroup};
+      var def = {'Mobile_No': mno};
+       await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseuser.uid)
+          .update(a);
+       await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseuser.uid)
+          .update(b);
+
+         await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseuser.uid)
+          .update(c);
+
+           await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseuser.uid)
+          .update(def);
+
+      return ("True");
+    } catch (e) {
+      return "False";
+    }
   }
 }
