@@ -1,5 +1,5 @@
-import 'package:design/registrationpage/registrationpage.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/loadingpage/loadingpage.dart';
 
 void main() {
   runApp(Swasthya());
@@ -12,7 +12,7 @@ class Swasthya extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      home: RegistrationPage(),
+      home: LoadingPage(),
     );
   }
 }
