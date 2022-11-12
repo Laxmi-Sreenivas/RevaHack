@@ -1,6 +1,7 @@
 import 'package:swasthya/TopBar/topbarback.dart';
 import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/services/services.dart';
 
 class EditDetails extends StatelessWidget {
   const EditDetails({Key? key}) : super(key: key);
@@ -32,7 +33,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController genderController = TextEditingController();
   TextEditingController bgController = TextEditingController();
   TextEditingController mbnoController = TextEditingController();
-
+  final AuthService _auth = AuthService();
+  String mno = "";
+  String fname = "";
   String? Selectedgender;
   String? selectedBloodGroup;
   // List of items in our dropdown menu
@@ -73,24 +76,34 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               ),
             ),
-            CircleAvatar(radius: 73,backgroundColor: Color.fromARGB(255, 16, 123, 254),
-              child: CircleAvatar(backgroundImage: AssetImage("lib/assets/User Profile.png"),radius: 70,),
+            CircleAvatar(
+              radius: 73,
+              backgroundColor: Color.fromARGB(255, 16, 123, 254),
+              child: CircleAvatar(
+                backgroundImage: AssetImage("lib/assets/User Profile.png"),
+                radius: 70,
+              ),
             ),
             Row(
               children: <Widget>[
-                Spacer(flex:1),
+                Spacer(flex: 1),
                 IconButton(
-                  onPressed: null,
-                  icon: Icon(
-                    NavIcons.profile,
-                    size: 40,
-                    color: Colors.white,
-                  )),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
-                    child: Text('Change Photo',style: TextStyle(fontWeight: FontWeight.bold,) ),),
-                
-                Spacer(flex: 1,),
+                    onPressed: null,
+                    icon: Icon(
+                      NavIcons.profile,
+                      size: 40,
+                      color: Colors.white,
+                    )),
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
+                  child: Text('Change Photo',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+                Spacer(
+                  flex: 1,
+                ),
               ],
             ),
             Container(
@@ -121,9 +134,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Full Name',
                 ),
+                      onChanged: (value) {
+                  setState(() => fname = value);
+                },
               ),
             ),
-            
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -165,9 +180,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(6.0),
                       ),
-                      
                       child: DropdownButton(
-                        
                         hint: Text("Gender"),
                         value: Selectedgender,
                         items: genders
@@ -187,7 +200,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   child: SizedBox(
                     width: 150,
                     child: Container(
-                      
                       padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6.0),
@@ -236,13 +248,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: '+91 00000 00000',
                 ),
+                onChanged: (value) {
+                  setState(() => mno = value);
+                }
               ),
             ),
-
-            
-            
-            
-            
             Container(
               alignment: Alignment.center,
               padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
@@ -260,7 +270,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: null,
+                  onPressed: (){
+                    if(_auth.Editdetails(fname, mno, Selectedgender.toString(), selectedBloodGroup.toString()) == 'True'){
+                        print("Succesfull");
+                    }
+                    else
+                    {
+                        print("Try again");
+                    }
+                  },
                   child: const Text(
                     "Update",
                     style: TextStyle(
@@ -271,7 +289,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               ),
             ),
-                      ],
+          ],
         ));
   }
 }
