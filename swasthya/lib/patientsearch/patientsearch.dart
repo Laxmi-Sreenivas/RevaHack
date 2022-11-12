@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swasthya/TopBar/doctortopbar.dart';
+import 'package:swasthya/navigationpage/Docnavigationbar.dart';
 import 'package:swasthya/patientsearch/patientcard.dart';
 
 class PatientSearch extends StatelessWidget {
@@ -15,6 +16,7 @@ class PatientSearch extends StatelessWidget {
         appBar: DoctorTopBar(),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         body: const MyStatefulWidget(),
+        bottomNavigationBar: DocNavBar(pageIndex: 2),
       ),
     );
   }

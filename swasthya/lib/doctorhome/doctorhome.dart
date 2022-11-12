@@ -1,6 +1,7 @@
 import 'package:swasthya/TopBar/doctortopbar.dart';
 import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/addnewreport/addnewreport.dart';
+import 'package:swasthya/navigationpage/Docnavigationbar.dart';
 import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya/otpverificationpage/otpverify.dart';
@@ -19,6 +20,7 @@ class DoctorHome extends StatelessWidget {
         appBar: DoctorTopBar(),
         backgroundColor: Color.fromARGB(255, 250, 251, 252),
         body: const MyStatefulWidget(),
+        bottomNavigationBar: DocNavBar(pageIndex: 0),
       ),
     );
   }
