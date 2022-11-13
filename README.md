@@ -19,4 +19,8 @@ Team Members: Murali Jayam, UX Designer
               Prasanth Reddy, Front-end Developer
               Laxmi Sreenivas, Front-end Developer
               Surya Vamsi, Back-end Developer
+              
+Note: There is a demo apk in Build folder for you to checkout the application.
+      Sample user Credentials: jayam2703jmk@gmail.com(Email)
+                               Abcd1234(Password)
 
