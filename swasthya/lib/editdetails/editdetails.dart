@@ -1,3 +1,4 @@
+import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/TopBar/topbarback.dart';
 import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class EditDetails extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        appBar: TopBarBack(),
+        appBar: TopBar(),
         backgroundColor: Color.fromARGB(255, 145, 177, 242),
         body: const MyStatefulWidget(),
       ),
@@ -90,9 +91,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 IconButton(
                     onPressed: null,
                     icon: Icon(
-                      NavIcons.profile,
-                      size: 40,
-                      color: Colors.white,
+                      Icons.camera_alt_rounded
                     )),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 6, 0, 0),

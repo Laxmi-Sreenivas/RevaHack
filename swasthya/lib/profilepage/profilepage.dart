@@ -14,16 +14,6 @@ class profilepage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 194, 222, 255),
       appBar: TopBar(),
-      // appBar: AppBar(
-      //   backgroundColor:  Color.fromARGB(255, 111, 177, 255),
-      //   leading: BackButton(
-      //       color: Colors.black
-      //     ), 
-      //   title: Container(
-      //     padding: EdgeInsets.fromLTRB(75, 0, 0, 0),
-      //    child: Text('Profile',style: TextStyle(fontSize: 30),),
-      //   )
-      // ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

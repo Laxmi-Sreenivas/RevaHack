@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swasthya/TopBar/doctortopbar.dart';
 import 'package:swasthya/doctorappointents/appointcard.dart';
 import 'package:swasthya/doctorappointents/noofappointmentscard.dart';
+import 'package:swasthya/navigationpage/Docnavigationbar.dart';
 import 'package:swasthya/patientsearch/patientcard.dart';
 
 class DocAppointments extends StatelessWidget {
@@ -17,6 +18,9 @@ class DocAppointments extends StatelessWidget {
         appBar: DoctorTopBar(),
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         body: const MyStatefulWidget(),
+        bottomNavigationBar: DocNavBar(
+          pageIndex: 1,
+        ),
       ),
     );
   }
