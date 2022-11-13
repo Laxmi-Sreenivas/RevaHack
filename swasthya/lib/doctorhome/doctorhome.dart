@@ -6,6 +6,8 @@ import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya/otpverificationpage/otpverify.dart';
 import 'package:swasthya/userlogin/userlogin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swasthya/services/services.dart';
 
 class DoctorHome extends StatelessWidget {
   const DoctorHome({Key? key}) : super(key: key);
@@ -27,7 +29,6 @@ class DoctorHome extends StatelessWidget {
 }
 
 class MyStatefulWidget extends StatefulWidget {
-  
   const MyStatefulWidget({Key? key}) : super(key: key);
 
   @override
@@ -36,7 +37,8 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController healthidController = TextEditingController();
-
+  dynamic uid;
+  final AuthService _auth = AuthService();
   // List of items in our dropdown menu
 
   @override
@@ -79,6 +81,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: '1234 5678',
                 ),
+                onChanged: (value) {
+                  setState(() => uid = value);
+                },
               ),
             ),
             Container(
@@ -98,8 +103,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AddNewReport())),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AddNewReport()));
+                  },
                   child: const Text(
                     "Add Report",
                     style: TextStyle(
@@ -127,8 +134,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 3),
                       ))),
-                  onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => OtpVerify())),
+                  onPressed: () {
+                    _auth.getPatientreports(uid);
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => OtpVerify()));
+                  },
                   child: const Text(
                     "Get Access",
                     style: TextStyle(
