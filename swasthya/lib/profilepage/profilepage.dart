@@ -2,6 +2,7 @@ import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/TopBar/topbarback.dart';
 import 'package:swasthya/editdetails/editdetails.dart';
 import 'package:swasthya/editprimarycontact/EditPricontact.dart';
+import 'package:swasthya/loginpage/loginpage.dart';
 import 'package:swasthya/profilepage/profilepagecard.dart';
 import 'package:swasthya/userlogin/userlogin.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +92,7 @@ class profilepage extends StatelessWidget {
                     onPressed: () => Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) => EditpriContact())),
                     child: const Text(
-                      "Edit Primary Contacts",
+                      "Edit Primary Contact ",
                       style: TextStyle(
                         fontSize: 20,
                         color: Color.fromARGB(255, 0, 0, 0),
@@ -119,7 +120,7 @@ class profilepage extends StatelessWidget {
                     ))),
                 onPressed: () => {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => userlogin()))
+                      MaterialPageRoute(builder: (context) => Loginpage()))
                 },
                 child: const Text(
                   "Logout",
