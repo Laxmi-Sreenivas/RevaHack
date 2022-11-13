@@ -1,13 +1,17 @@
 import 'package:swasthya/TopBar/doctortopbar.dart';
 import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/addnewreport/addnewreport.dart';
+import 'package:swasthya/doctorhome/doctorhome.dart';
 import 'package:swasthya/navigationpage/navigationbar.dart';
 import 'package:flutter/material.dart';
 import 'package:swasthya/registrationpage/healthcard.dart';
 import 'package:swasthya/userlogin/userlogin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swasthya/services/services.dart';
 
 class AddNewReport extends StatelessWidget {
-  const AddNewReport({Key? key}) : super(key: key);
+  final dynamic uid;
+  const AddNewReport({Key? key, required this.uid}) : super(key: key);
 
   static const String _title = 'Sample App';
 
@@ -18,15 +22,15 @@ class AddNewReport extends StatelessWidget {
       home: Scaffold(
         appBar: DoctorTopBar(),
         backgroundColor: Color.fromARGB(255, 250, 251, 252),
-        body: const MyStatefulWidget(),
+        body: MyStatefulWidget(uid: uid,),
       ),
     );
   }
 }
 
 class MyStatefulWidget extends StatefulWidget {
-  
-  const MyStatefulWidget({Key? key}) : super(key: key);
+  final dynamic uid;
+  const MyStatefulWidget({Key? key,required this.uid}) : super(key: key);
 
   @override
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
@@ -38,8 +42,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController dirController = TextEditingController();
   TextEditingController AdditiController = TextEditingController();
   TextEditingController nextController = TextEditingController();
-
-  // List of items in our dropdown menu
+  final AuthService _auth = AuthService();
+  String d = "";
+  String medi = "";
+  String dir = "";
+  String add = ""; // List of items in our dropdown menu
+  String next = "";
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +79,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Medical Diagnosis',
                 ),
+                onChanged: (value) {
+                  setState(() => d = value);
+                },
               ),
             ),
             Container(
@@ -89,6 +100,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Medicenes',
                 ),
+                onChanged: (value) {
+                  setState(() => medi = value);
+                },
               ),
             ),
             Container(
@@ -107,12 +121,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Directions to usage',
                 ),
+                onChanged: (value) {
+                  setState(() => dir = value);
+                },
               ),
             ),
             Container(
               padding: EdgeInsets.fromLTRB(30, 5, 30, 0),
               child: TextField(
-                
                 controller: AdditiController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -125,9 +141,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   filled: true, //<-- SEE HERE
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Additional Comments',
-                  
                 ),
                 style: TextStyle(height: 10),
+                onChanged: (value) {
+                  setState(() => add = value);
+                },
               ),
             ),
             Container(
@@ -146,9 +164,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   fillColor: Color.fromARGB(255, 255, 255, 255),
                   hintText: 'Next visit',
                 ),
+                onChanged: (value) {
+                  setState(() => next = value);
+                },
               ),
             ),
-
             Container(
               alignment: Alignment.center,
               padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
@@ -166,8 +186,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AddNewReport())),
+                  onPressed: () {
+                    //_auth.addReport(widget.uid, d, medi, dir, add, next);
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => DoctorHome()));
+                  },
                   child: const Text(
                     "Add New Report",
                     style: TextStyle(

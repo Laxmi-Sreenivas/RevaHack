@@ -105,7 +105,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       ))),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => AddNewReport()));
+                        builder: (context) => AddNewReport(uid: uid)));
                   },
                   child: const Text(
                     "Add Report",

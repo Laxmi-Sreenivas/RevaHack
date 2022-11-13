@@ -6,12 +6,11 @@ import 'package:swasthya/registrationpage/healthcard.dart';
 
 class PatientDetails extends StatefulWidget {
   PatientDetails({Key? key}) : super(key: key);
-  
+  String uid = "";
   final clicked = Color.fromARGB(255, 17, 98, 255);
   final notclicked = Color.fromARGB(255, 194, 222, 255);
 
   Color now = Color.fromARGB(255, 194, 222, 255);
-  
 
   @override
   State<StatefulWidget> createState() {
@@ -20,7 +19,6 @@ class PatientDetails extends StatefulWidget {
 }
 
 class PatientDetailsState extends State<PatientDetails> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,23 +26,20 @@ class PatientDetailsState extends State<PatientDetails> {
       appBar: DoctorTopBar(),
       body: const MyStatefulWidget(),
       floatingActionButton: InkWell(
-          splashColor: Colors.blue,
-          onLongPress: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) => AddNewReport())),
-          child: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: (){},
-          ),
+        splashColor: Colors.blue,
+        onLongPress: () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => AddNewReport(uid: widget.uid))),
+        child: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {},
         ),
-    floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
-      
-
   }
 }
 
- class MyStatefulWidget extends StatefulWidget {
-  
+class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
 
   @override
@@ -52,7 +47,6 @@ class PatientDetailsState extends State<PatientDetails> {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
   // List of items in our dropdown menu
 
   @override
@@ -74,4 +68,3 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ));
   }
 }
-
