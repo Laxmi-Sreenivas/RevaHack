@@ -227,4 +227,34 @@ class AuthService {
       return "False";
     }
   }
+
+  Future<List<List<String>>> getPatientreports(dynamic uid) async {
+    firebaseuser = FirebaseAuth.instance.currentUser;
+    final uref = FirebaseFirestore.instance.collection('aadharmap');
+    List<List<String>> res = [];
+    DocumentSnapshot<Map<String, dynamic>> d = await uref.doc(uid).get();
+    dynamic uuid = d["id"];
+    final temp = FirebaseFirestore.instance.collection('map');
+    DocumentSnapshot<Map<String, dynamic>> t = await temp.doc(uuid).get();
+    int presentNo = await t['presentno'];
+    if (presentNo == 0)
+      return res;
+    else {
+      for (int i = presentNo; i > 0; i--) {
+        List<String> lst = [];
+        DocumentSnapshot<Map<String, dynamic>> k = await FirebaseFirestore
+            .instance
+            .collection('healthrec')
+            .doc(uuid)
+            .collection(i.toString())
+            .doc('ABCD')
+            .get();
+        lst.add(k['Diagnosis']);
+        lst.add(k['date']);
+        lst.add(k['Medicine']);
+        res.add(lst);
+      }
+    }
+    return res;
+  }
 }

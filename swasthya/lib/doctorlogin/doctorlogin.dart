@@ -176,24 +176,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  'Not Registered?',
-                  style: TextStyle(fontSize: 12),
-                ),
-                TextButton(
-                  child: const Text(
-                    'Register Now',
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  onPressed: () {
-                    //signup screen
-                  },
-                )
-              ],
-            ),
           ],
         ));
   }

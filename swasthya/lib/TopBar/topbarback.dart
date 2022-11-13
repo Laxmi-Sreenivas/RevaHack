@@ -9,10 +9,11 @@ class TopBarBack extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
         backgroundColor: Color.fromARGB(255, 111, 177, 255),
         toolbarHeight: 90,
-        leading: BackButton(
-              color: Colors.black
-            ),
-        title:    
+        leading: IconButton(
+                    icon: Icon(Icons.arrow_back, color: Colors.black),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ), 
+        title:   
             Row(children: <Widget>[
               Spacer(flex: 2,),
               ElevatedButton(

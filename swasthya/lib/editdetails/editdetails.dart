@@ -1,6 +1,8 @@
+import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/TopBar/topbarback.dart';
 import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/registrationpage/registrationpage.dart';
 import 'package:swasthya/services/services.dart';
 
 class EditDetails extends StatelessWidget {
@@ -13,7 +15,7 @@ class EditDetails extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        appBar: TopBarBack(),
+        appBar: TopBar(),
         backgroundColor: Color.fromARGB(255, 145, 177, 242),
         body: const MyStatefulWidget(),
       ),
@@ -90,9 +92,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 IconButton(
                     onPressed: null,
                     icon: Icon(
-                      NavIcons.profile,
-                      size: 40,
-                      color: Colors.white,
+                      Icons.camera_alt_rounded
                     )),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
@@ -270,15 +270,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: (){
-                    if(_auth.Editdetails(fname, mno, Selectedgender.toString(), selectedBloodGroup.toString()) == 'True'){
-                        print("Succesfull");
-                    }
-                    else
-                    {
-                        print("Try again");
-                    }
-                  },
+                  onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => RegistrationPage())),
                   child: const Text(
                     "Update",
                     style: TextStyle(
