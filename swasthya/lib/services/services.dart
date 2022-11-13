@@ -54,7 +54,9 @@ class AuthService {
         'Contact_Mobile_No': cmno,
         'Email': email
       });
-
+      final uref = FirebaseFirestore.instance.collection('aadharmap');
+      var c = firebaseuser.uid;
+      await uref.doc(firebaseuser.uid).set({'id': c});
       return (true);
     } catch (e) {
       return (e.toString());
@@ -257,4 +259,30 @@ class AuthService {
     }
     return res;
   }
-}
+
+  Future<void> addReport(
+      dynamic uid, String m, String b, String c, String d, String e) async {
+    firebaseuser = FirebaseAuth.instance.currentUser;
+    final uref = FirebaseFirestore.instance.collection('aadharmap');
+    List<List<String>> res = [];
+    DocumentSnapshot<Map<String, dynamic>> d = await uref.doc(uid).get();
+    dynamic uuid = d["id"];
+    final temp = FirebaseFirestore.instance.collection('map');
+    DocumentSnapshot<Map<String, dynamic>> t = await temp.doc(uuid).get();
+    int presentNo = await t['presentno'];
+    presentNo = presentNo + 1;
+    var a = {'presentno': presentNo};
+    await FirebaseFirestore.instance.collection('map').doc(uuid).update(a);
+    DocumentSnapshot<Map<String, dynamic>> k = await FirebaseFirestore.instance.collection('doctors').doc(firebaseuser.uid).get();
+    var docname = k["Name"];
+    await FirebaseFirestore.instance.collection('healthrec').doc(uuid).collection(presentNo.toString()).doc('ABCD').set({
+      'Comments':d,
+      'Diagnosis':m,
+      'Docid':firebaseuser.uid,
+      'Medicine':b,
+      'Name':docname,
+      'Nextvisit':e,
+      'Usage': c,
+        });
+    } 
+     }
