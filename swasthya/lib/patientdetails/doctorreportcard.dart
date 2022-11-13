@@ -4,7 +4,8 @@ import 'package:swasthya/reportspage/reportcarddata.dart';
 import 'package:flutter/material.dart';
 
 class DoctorReportCard extends StatelessWidget {
-  const DoctorReportCard({Key? key}) : super(key: key);
+  final List<String> doctorReportData;
+  const DoctorReportCard({Key? key,required this.doctorReportData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +19,9 @@ class DoctorReportCard extends StatelessWidget {
       padding: EdgeInsets.zero,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
+        children: <Widget>[
           
-          DoctorReportCardData(DoctorreportcardDetails: <String>["Viral Fever","Murali","27/03/2002"])
+          DoctorReportCardData(DoctorreportcardDetails: doctorReportData)
         ],
       ),
     );

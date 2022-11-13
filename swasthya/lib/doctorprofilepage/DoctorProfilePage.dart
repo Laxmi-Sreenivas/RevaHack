@@ -1,5 +1,8 @@
 import 'package:swasthya/TopBar/doctortopbar.dart';
+import 'package:swasthya/doctorappointents/doctorappointments.dart';
 import 'package:swasthya/doctorprofilepage/DoctorProfilePagecard.dart';
+import 'package:swasthya/loginpage/loginpage.dart';
+import 'package:swasthya/patientsearch/patientsearch.dart';
 import 'package:swasthya/userlogin/userlogin.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +42,7 @@ class Doctorprofilepage extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(10, 10, 30, 0),
                   
                   child: TextButton(
-                    onPressed: null,
+                    onPressed: () => null,
                     child: const Text(
                       "Edit Details",
                       style: TextStyle(
@@ -62,7 +65,8 @@ class Doctorprofilepage extends StatelessWidget {
                   padding: EdgeInsets.fromLTRB(10, 0, 30, 0),
                   
                   child: TextButton(
-                    onPressed: null,
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => PatientSearch())),
                     child: const Text(
                       "Download Patient List",
                       style: TextStyle(
@@ -84,7 +88,8 @@ class Doctorprofilepage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 0, 30, 10),
                   child: TextButton(
-                    onPressed: null,
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => DocAppointments())),
                     child: const Text(
                       "Manage Appointments",
                       style: TextStyle(
@@ -114,7 +119,7 @@ class Doctorprofilepage extends StatelessWidget {
                     ))),
                 onPressed: () => {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => userlogin()))
+                      MaterialPageRoute(builder: (context) => Loginpage()))
                 },
                 child: const Text(
                   "Logout",

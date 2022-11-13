@@ -2,6 +2,7 @@ import 'package:swasthya/TopBar/topbar.dart';
 import 'package:swasthya/TopBar/topbarback.dart';
 import 'package:swasthya/navigationpage/navicons.dart';
 import 'package:flutter/material.dart';
+import 'package:swasthya/registrationpage/registrationpage.dart';
 import 'package:swasthya/services/services.dart';
 
 class EditDetails extends StatelessWidget {
@@ -269,15 +270,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         side: BorderSide(
                             color: Color.fromARGB(0, 17, 98, 255), width: 1),
                       ))),
-                  onPressed: (){
-                    if(_auth.Editdetails(fname, mno, Selectedgender.toString(), selectedBloodGroup.toString()) == 'True'){
-                        print("Succesfull");
-                    }
-                    else
-                    {
-                        print("Try again");
-                    }
-                  },
+                  onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => RegistrationPage())),
                   child: const Text(
                     "Update",
                     style: TextStyle(
