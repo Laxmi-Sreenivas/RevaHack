@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:swasthya/addnewreport/addnewreport.dart';
 import 'package:swasthya/patientdetails/doctorreportcard.dart';
 import 'package:swasthya/registrationpage/healthcard.dart';
+import 'package:swasthya/services/services.dart';
 
 class PatientDetails extends StatefulWidget {
   PatientDetails({Key? key}) : super(key: key);
@@ -53,7 +54,18 @@ class PatientDetailsState extends State<PatientDetails> {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
-  // List of items in our dropdown menu
+  AuthService _auth = AuthService();
+  bool isLoading = true;
+  List<List<String>> reportData = [];
+
+  void getReportData() async{
+    
+  }
+
+  void initState(){
+    super.initState();
+    getReportData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +81,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            DoctorReportCard()
+            
           ],
         ));
   }
